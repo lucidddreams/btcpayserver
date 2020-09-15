@@ -6,11 +6,11 @@ namespace BTCPayServer
 {
     public static class LiquidExtensions
     {
-        public static IEnumerable<string> GetAllElementsSubChains(this BTCPayNetworkProvider networkProvider, BTCPayNetworkProvider unfiltered)
+        public static IEnumerable<string> GetAllElementsSubChains(this BTCPayNetworkProvider networkProvider, BTCPayNetworkProvider unfilteredNetworkProvider)
         {
             var elementsBased = networkProvider.GetAll().OfType<ElementsBTCPayNetwork>();
             var parentChains = elementsBased.Select(network => network.NetworkCryptoCode.ToUpperInvariant()).Distinct();
-            return unfiltered.GetAll().OfType<ElementsBTCPayNetwork>()
+            return unfilteredNetworkProvider.GetAll().OfType<ElementsBTCPayNetwork>()
                 .Where(network => parentChains.Contains(network.NetworkCryptoCode)).Select(network => network.CryptoCode.ToUpperInvariant());
         }
     }

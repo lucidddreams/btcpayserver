@@ -222,9 +222,6 @@ namespace BTCPayServer.Tests
                 var bitpay = new MockRateProvider();
                 bitpay.ExchangeRates.Add(new PairRate(CurrencyPair.Parse("ETB_BTC"), new BidAsk(0.1m)));
                 rateProvider.Providers.Add("bitpay", bitpay);
-                var kraken = new MockRateProvider();
-                kraken.ExchangeRates.Add(new PairRate(CurrencyPair.Parse("ETH_BTC"), new BidAsk(0.1m)));
-                rateProvider.Providers.Add("kraken", kraken);
             }
 
 
